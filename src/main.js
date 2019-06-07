@@ -5,13 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 $(document).ready(function(){
-  let test = new Doctor();
-  console.log(test);
-  $("#kingButton").on("click", () => {
-    let value = "Toothache";
-    setTimeout(()=>{
-      let results = test.findMD(value);
-      // $("#doctor").append(`${body}`);
-    }, 5000);
+  let doctor = new Doctor();
+  $("form").on("submit", (event) => {
+    event.preventDefault();
+    let search = $("#symptom").val();
+    console.log(search);
+    doctor.findSymptom(search);
   })
 });
