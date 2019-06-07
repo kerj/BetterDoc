@@ -6,7 +6,6 @@ export class Doctor{
   }
 
   findMd(search, searchType){
-    console.log("made it");
     let body;
     let promise = new Promise((resolve,reject)=> {
       let request = new XMLHttpRequest();
@@ -18,7 +17,6 @@ export class Doctor{
       }
       request.onload = () =>{
         if(request.status === 200){
-          console.log("status 200");
           resolve(request.response);
         }else{
           reject(Error(request.statusText));
@@ -34,10 +32,23 @@ export class Doctor{
       if(body.data.length === 0){
         $("#results").append("There are no results to display.")
       }
+
       Object.keys(body.data).map((doc) => {
-        $("#results").append(body.data[doc].profile['first_name'] + " " + body.data[doc].profile['last_name'] + '<br>' + '&nbsp' + 'Address: ' +  body.data[doc].practices[0].visit_address['street'] + '<br>' + '&nbsp' + 'Phone Number: ' + body.data[doc].practices[0].phones[0]['number'] + '<br>' + '&nbsp' + 'Accepting patients: ' + body.data[doc].practices[0]['accepts_new_patients'] + '<br>');
-        if(body.data[doc].practices[0].website) {
-          $("#results").append('-Website ' + body.data[doc].practices[0].website + '<br>');
+        console.log(body.data[doc].practices.length);
+        console.log(body);
+        if(body.data[doc].practices.length > 1){
+          let officeLocations = body.data[doc].practices
+          setTimeout(() => {
+            for (let i = 0; i <= officeLocations.length; i++) {
+              if(officeLocations[i]['location_slug'] === 'or-portland'){
+                $("#results").append(body.data[doc].profile['first_name'] + " " + body.data[doc].profile['last_name'] + '<br>' + '&nbsp' + 'Address: ' +  body.data[doc].practices[0].visit_address['street'] + '<br>' + '&nbsp' + 'Phone Number: ' + body.data[doc].practices[0].phones[0]['number'] + '<br>' + '&nbsp' + 'Accepting patients: ' + body.data[doc].practices[0]['accepts_new_patients'] + '<br>');
+                if(body.data[doc].practices[0].website) {
+                  $("#results").append('-Website ' + body.data[doc].practices[0].website + '<br>');
+                }
+                i++;
+              }
+            }
+          }, 1000)
         }
       });
     }, (error) => {
