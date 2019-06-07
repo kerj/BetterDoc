@@ -10,7 +10,6 @@ $(document).ready(function(){
     event.preventDefault();
     let search = $("#search").val();
     let searchType = $("#searchType").val();
-    console.log(search, searchType);
     doctor.findMd(search, searchType);
   })
 });
