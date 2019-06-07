@@ -8,8 +8,9 @@ $(document).ready(function(){
   let doctor = new Doctor();
   $("form").on("submit", (event) => {
     event.preventDefault();
-    let search = $("#symptom").val();
-    console.log(search);
-    doctor.findSymptom(search);
+    let search = $("#search").val();
+    let searchType = $("#searchType").val();
+    console.log(search, searchType);
+    doctor.findMd(search, searchType);
   })
 });

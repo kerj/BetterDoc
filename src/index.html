@@ -13,16 +13,18 @@
       </div>
       <div id="searchForm">
         <form>
-          <h3>Search for a doctor by...</h3>
-            <label for="symptom">Symptom:</label>
-            <input id="symptom" type="text" name="symptom">
-          <!-- <h3>-OR BY-</h3>
-            <label for="lastName">Doctor Last Name:</label>
-            <input id="lastName" type="text" name="lastName"><br> -->
-            <button id="submit" type="submit" name="button">Search Doctors</button>
+          <h3>Search by..</h3>
+          <select id="searchType">
+            <option value="type">Type</option>
+            <option value="lastName">Doctor Last Name</option>
+          </select>
+          <input id="search" type="text" name="search">
+          <button id="submit" type="submit" name="button">Search Doctors</button>
         </form>
       </div>
+      <div id="results">
 
+      </div>
       <div class="boarder">
 
       </div>
