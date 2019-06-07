@@ -43,7 +43,7 @@ module.exports = {
             Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
             Util: 'exports-loader?Util!bootstrap/js/dist/util'
         }),
-        new Dotenv();
+        new Dotenv()
     ],
     module: {
         rules: [{
