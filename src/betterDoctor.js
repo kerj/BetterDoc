@@ -5,7 +5,7 @@ export class Doctor{
     this.newPatints = false;
   }
 
-  findMD(search){
+  findSymptom(search){
     let body;
     let promise = new Promise((resolve,reject)=> {
       let request = new XMLHttpRequest();
@@ -13,7 +13,6 @@ export class Doctor{
       request.onload = () =>{
         if(request.status === 200){
           resolve(request.response);
-          console.log(request);
         }else{
           reject(Error(request.statusText));
         }
@@ -23,10 +22,12 @@ export class Doctor{
     });
 
     promise.then((response) => {
-
       body = JSON.parse(response);
       $("#doctor").empty();
-      $("#doctor").append(body.data[0].profile['first_name']);
+      Object.keys(body.data).map((doc) => {
+        console.log(body.data[doc].profile);
+        $("#doctor").append(body.data[doc].profile['first_name']+ "<br>");
+      })
       // Object.keys(body.data.practices.name);
     }, (error) => {
       console.log("error out");
