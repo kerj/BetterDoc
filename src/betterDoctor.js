@@ -34,21 +34,9 @@ export class Doctor{
       }
 
       Object.keys(body.data).map((doc) => {
-        console.log(body.data[doc].practices.length);
-        console.log(body);
-        if(body.data[doc].practices.length > 1){
-          let officeLocations = body.data[doc].practices
-          setTimeout(() => {
-            for (let i = 0; i <= officeLocations.length; i++) {
-              if(officeLocations[i]['location_slug'] === 'or-portland'){
-                $("#results").append(body.data[doc].profile['first_name'] + " " + body.data[doc].profile['last_name'] + '<br>' + '&nbsp' + 'Address: ' +  body.data[doc].practices[0].visit_address['street'] + '<br>' + '&nbsp' + 'Phone Number: ' + body.data[doc].practices[0].phones[0]['number'] + '<br>' + '&nbsp' + 'Accepting patients: ' + body.data[doc].practices[0]['accepts_new_patients'] + '<br>');
-                if(body.data[doc].practices[0].website) {
-                  $("#results").append('-Website ' + body.data[doc].practices[0].website + '<br>');
-                }
-                i++;
-              }
-            }
-          }, 1000)
+        $("#results").append(body.data[doc].profile['first_name'] + " " + body.data[doc].profile['last_name'] + '<br>' + '&nbsp' + 'Address: ' +  body.data[doc].practices[0].visit_address['street'] + '<br>' + '&nbsp' + 'Phone Number: ' + body.data[doc].practices[0].phones[0]['number'] + '<br>' + '&nbsp' + 'Accepting patients: ' + body.data[doc].practices[0]['accepts_new_patients'] + '<br>');
+        if(body.data[doc].practices[0].website) {
+          $("#results").append('-Website ' + body.data[doc].practices[0].website + '<br>');
         }
       });
     }, (error) => {
